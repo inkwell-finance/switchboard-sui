@@ -1,0 +1,5 @@
+[meta]
+creation_timestamp = "1757866515651000 2025-09-14 11:15:15.651000049 -05:00"
+
+[packages]
+Switchboard = { uuid = "JBYHMPIYV3D4TXN4W6R7TROEWM", uuid_custom = false }

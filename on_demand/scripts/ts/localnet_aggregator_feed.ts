@@ -1,0 +1,119 @@
+// sui client upgrade --upgrade-capability 0x75c9afab64928bbb62039f0b4f4bb4437e5312557583c4f3d350affd705cb1ba
+import { SuiClient } from "@mysten/sui/client";
+import { Transaction } from "@mysten/sui/transactions";
+import { Ed25519Keypair } from "@mysten/sui/keypairs/ed25519";
+import { fromBase64 as fromB64, toHex, fromHex } from "@mysten/sui/utils";
+import {
+  Oracle,
+  Queue,
+  State,
+  Aggregator,
+  SwitchboardClient,
+} from "@switchboard-xyz/sui-sdk";
+import * as fs from "fs";
+import * as path from "path";
+import * as os from "os";
+import { config } from "dotenv";
+
+config();
+
+const ON_DEMAND_LOCALNET_STATE_OBJECT_ID = process.env.ON_DEMAND_LOCALNET_STATE_OBJECT_ID;
+const DEPLOYER_KEYSTORE_PATH = process.env.DEPLOYER_KEYSTORE_PATH;
+const DEPLOYER_ALIASES_PATH = process.env.DEPLOYER_ALIASES_PATH;
+const DEPLOYER_ALIAS = process.env.DEPLOYER_ALIAS;
+
+if (!DEPLOYER_KEYSTORE_PATH) {
+  throw new Error("Env variable DEPLOYER_KEYSTORE_PATH not set");
+}
+if (!DEPLOYER_ALIASES_PATH) {
+  throw new Error("Env variable DEPLOYER_ALIASES_PATH not set");
+}
+if (!DEPLOYER_ALIAS) {
+  throw new Error("Env variable DEPLOYER_ALIAS not set");
+}
+if (!ON_DEMAND_LOCALNET_STATE_OBJECT_ID) {
+  throw new Error("Env variable LOCALNET_STATE_OBJECT_ID not set");
+}
+const LOCALNET_SUI_RPC = process.env.SUI_RPC_URL!;
+const client = new SuiClient({
+  url: LOCALNET_SUI_RPC,
+});
+const sb = new SwitchboardClient(client, { stateObjectId: ON_DEMAND_LOCALNET_STATE_OBJECT_ID });
+
+let keypair: Ed25519Keypair | null = null;
+
+try {
+  const aliases = JSON.parse(fs.readFileSync(DEPLOYER_ALIASES_PATH, "utf-8"));
+    const aliasIndex = aliases.findIndex((a: any) => a.alias === DEPLOYER_ALIAS);
+    const keystore = JSON.parse(fs.readFileSync(DEPLOYER_KEYSTORE_PATH, "utf-8"));
+    // Ensure the keystore has at least 4 keys
+    if (keystore.length < 4) {
+      throw new Error("Keystore has fewer than 4 keys.");
+    }
+  
+    // Access the 4th key (index 3) and decode from base64
+    const secretKey = fromB64(keystore[aliasIndex]);
+  keypair = Ed25519Keypair.fromSecretKey(secretKey.slice(1)); // Slice to remove the first byte if needed
+} catch (error) {
+  console.log("Error:", error);
+}
+
+if (!keypair) {
+  throw new Error("Keypair not loaded");
+}
+
+//================================================================================================
+// Initialization and Logging
+//================================================================================================
+
+
+// console.log(`User account ${userAddress} loaded.`);
+
+// console.log("Initializing TESTNET Guardian Queue Setup");
+// const chainID = await client.getChainIdentifier();
+
+// console.log(`Chain ID: ${chainID}`);
+
+const state = new State(sb, ON_DEMAND_LOCALNET_STATE_OBJECT_ID);
+const stateData = await state.loadData();
+
+console.log("State Data: ", stateData);
+
+const aggregatorId = process.env.BTC_USDT_AGGREGATOR_ID;
+// console.log("Aggregator init response:", res);
+
+if (!aggregatorId) {
+  throw new Error("Failed to create aggregator");
+}
+
+const aggregator = new Aggregator(sb, aggregatorId);
+
+console.log("Aggregator Data: ", await aggregator.loadData());
+
+let feedTx = new Transaction();
+
+const suiQueue = new Queue(sb, stateData.oracleQueue);
+const suiQueueData = await suiQueue.loadData();
+
+console.log("Sui Queue Data: ", suiQueueData);
+
+const response = await aggregator.fetchUpdateTx(feedTx);
+
+response.responses.map((r: any) => {
+  return (r.receipts = []);
+});
+
+console.log(response);
+
+feedTx.setGasBudgetIfNotSet(100000000);
+
+// send the transaction
+const feedResponse = await client.signAndExecuteTransaction({
+  signer: keypair,
+  transaction: feedTx,
+  options: {
+    showEffects: true,
+  },
+});
+
+console.log("Feed response:", feedResponse);

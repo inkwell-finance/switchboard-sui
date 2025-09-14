@@ -2,14 +2,26 @@
   "name": "sui-on-demand",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "localnet:state:init": "pnpm dlx tsx scripts/ts/localnet_state_init.ts",
+    "localnet:set_package_id": "pnpm dlx tsx scripts/ts/localnet_set_on_demand_package_id.ts",
+    "localnet:oracle_queue_override": "pnpm dlx tsx scripts/ts/localnet_oracle_queue_override.ts",
+    "localnet:guardian_queue_override": "pnpm dlx tsx scripts/ts/localnet_guardian_queue_override.ts",
+    "localnet:aggregator_flow": "pnpm dlx tsx scripts/ts/localnet_aggregator_flow.ts",
+    "localnet:aggregator_feed": "pnpm dlx tsx scripts/ts/localnet_aggregator_feed.ts"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "dotenv": "^17.2.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
     "@mysten/sui": "^1.11.0",
+    "@switchboard-xyz/on-demand": "^1.2.67",
     "@switchboard-xyz/sui-sdk": "workspace:^"
   }
 }

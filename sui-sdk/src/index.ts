@@ -54,6 +54,7 @@ export interface SwitchboardState {
 
 export interface CommonOptions {
   switchboardAddress?: string;
+  stateObjectId?: string;
   guardianQueueId?: string;
   oracleQueueId?: string;
   chainId?: string;
@@ -62,8 +63,8 @@ export interface CommonOptions {
 export class SwitchboardClient {
   state: Promise<SwitchboardState | undefined>;
 
-  constructor(readonly client: SuiClient) {
-    this.state = getSwitchboardState(client);
+  constructor(readonly client: SuiClient, options?: CommonOptions) {
+    this.state = getSwitchboardState(client, options);
   }
 
   /**
@@ -109,11 +110,14 @@ export async function getSwitchboardState(
   try {
     const chainId = options?.chainId ?? (await client.getChainIdentifier());
     const mainnet = chainId !== "4c78adac"; // Check if mainnet or testnet
+    console.log("Chain ID:", chainId);
+    console.log("Mainnet:", mainnet);
+    console.log("Options:", options);
+    const stateObjectId = options?.stateObjectId ?? (mainnet ? ON_DEMAND_MAINNET_STATE_OBJECT_ID : ON_DEMAND_TESTNET_STATE_OBJECT_ID);
+    console.log("State Object ID:", stateObjectId);
     const data = await State.fetch(
       client,
-      mainnet
-        ? ON_DEMAND_MAINNET_STATE_OBJECT_ID
-        : ON_DEMAND_TESTNET_STATE_OBJECT_ID
+      stateObjectId
     );
 
     return {
@@ -130,6 +134,7 @@ export async function getSwitchboardState(
 export function getFieldsFromObject(response: SuiObjectResponse): {
   [key: string]: MoveValue;
 } {
+  console.log("Response:", response);
   // Check if 'data' and 'content' exist and are of the expected type
   if (
     response.data?.content &&
