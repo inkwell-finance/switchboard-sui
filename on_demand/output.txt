@@ -1,0 +1,87 @@
+
+> sui-on-demand@ localnet:state:init /home/lars/sui/inkwell/packages/switchboard/on_demand
+> pnpm dlx tsx scripts/ts/localnet_state_init.ts
+
+[dotenv@17.2.2] injecting env (15) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+User account 0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462 loaded.
+Chain ID: ee9f8707
+Mainnet: true
+Options: {
+  stateObjectId: '0xc892385a535596080a91f6c2d369706f6bdbec85b13cf72bd035bb04924f9d88'
+}
+State Object ID: 0xc892385a535596080a91f6c2d369706f6bdbec85b13cf72bd035bb04924f9d88
+Response: {
+  data: {
+    objectId: '0xc892385a535596080a91f6c2d369706f6bdbec85b13cf72bd035bb04924f9d88',
+    version: '25',
+    digest: '7mVKp5zYGXbJWb7fykcWqSsgSYmvxXetonE7tPQYV73Y',
+    type: '0xcdd8a262e8d05e6d71774f98137e5da1ff0df527c9558c58fbdea7ed20dd0cc8::on_demand::State',
+    content: {
+      dataType: 'moveObject',
+      type: '0xcdd8a262e8d05e6d71774f98137e5da1ff0df527c9558c58fbdea7ed20dd0cc8::on_demand::State',
+      hasPublicTransfer: false,
+      fields: [Object]
+    }
+  }
+}
+Guardian Queue ID: 0x1b2cd0aab34151b3b8fc64674386b2f3b107a5bc1a97652cb72e4de9b697c288
+Queue ID: 0xbfb06e51b38f6c36a9a973e7b81c3cea4c8155fe4a494ee3d122887c3e1fd1ae
+{
+  digest: '8jgSVew6jDc8Ej5qg771ADSWWbZ7QVM8Any2u7GpGa4S',
+  effects: {
+    messageVersion: 'v1',
+    status: { status: 'success' },
+    executedEpoch: '0',
+    gasUsed: {
+      computationCost: '1000000',
+      storageCost: '4339600',
+      storageRebate: '4296204',
+      nonRefundableStorageFee: '43396'
+    },
+    modifiedAtVersions: [ [Object], [Object], [Object] ],
+    sharedObjects: [ [Object] ],
+    transactionDigest: '8jgSVew6jDc8Ej5qg771ADSWWbZ7QVM8Any2u7GpGa4S',
+    mutated: [ [Object], [Object], [Object] ],
+    gasObject: { owner: [Object], reference: [Object] },
+    eventsDigest: '3qRUcjAAKUhC6HT6VbydbDXyxZ2Epe5hhgAoaZWugh9C',
+    dependencies: [
+      '53sczwiD7FF5dxGjfFkjVcyrnRCyAbU7yuWTrCUKXCEj',
+      '8uoyw9VZ6Fy4jT5pWdbJcMTLNHnxdz6G4EC39UaCg9rH',
+      '9FeqVdKjxqZfbYFr2w92LaiLkn2i6A2776zHxuNfEZrA'
+    ]
+  },
+  objectChanges: [
+    {
+      type: 'mutated',
+      sender: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+      owner: [Object],
+      objectType: '0x2::coin::Coin<0x2::sui::SUI>',
+      objectId: '0xa5850abea5ac8f87002ad10498379ac511076491747aedb408b4750ca836350f',
+      version: '28',
+      previousVersion: '27',
+      digest: 'HAYC26nX8GNkBMdg8Yv8u13UtTgbLHNTL57H7wycqHDz'
+    },
+    {
+      type: 'mutated',
+      sender: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+      owner: [Object],
+      objectType: '0xcdd8a262e8d05e6d71774f98137e5da1ff0df527c9558c58fbdea7ed20dd0cc8::on_demand::AdminCap',
+      objectId: '0xba137bcc6f4adc13403cfb880986d05ca0390f0e60d677e723d7a93b6ec2ba28',
+      version: '28',
+      previousVersion: '25',
+      digest: 'DNPjbAefFHL4zVsj5tdhwheHMn3rtuTgzruvvVn7kSpM'
+    },
+    {
+      type: 'mutated',
+      sender: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+      owner: [Object],
+      objectType: '0xcdd8a262e8d05e6d71774f98137e5da1ff0df527c9558c58fbdea7ed20dd0cc8::on_demand::State',
+      objectId: '0xc892385a535596080a91f6c2d369706f6bdbec85b13cf72bd035bb04924f9d88',
+      version: '28',
+      previousVersion: '25',
+      digest: 'EKSmvgMbLBy7i3z6Ez4oKY3fntUHBbWcTw36fm7nnKGj'
+    }
+  ],
+  confirmedLocalExecution: false
+}
+Successfully initialized state object

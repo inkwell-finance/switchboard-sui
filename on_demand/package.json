@@ -7,8 +7,9 @@
     "localnet:set_package_id": "pnpm dlx tsx scripts/ts/localnet_set_on_demand_package_id.ts",
     "localnet:oracle_queue_override": "pnpm dlx tsx scripts/ts/localnet_oracle_queue_override.ts",
     "localnet:guardian_queue_override": "pnpm dlx tsx scripts/ts/localnet_guardian_queue_override.ts",
-    "localnet:aggregator_flow": "pnpm dlx tsx scripts/ts/localnet_aggregator_flow.ts",
-    "localnet:aggregator_feed": "pnpm dlx tsx scripts/ts/localnet_aggregator_feed.ts"
+    "localnet:btc_aggregator_flow": "pnpm dlx tsx scripts/ts/localnet_aggregator_flow_btc.ts",
+    "localnet:usdc_aggregator_flow": "pnpm dlx tsx scripts/ts/localnet_aggregator_flow_usdc.ts",
+    "localnet:btc_aggregator_feed": "pnpm dlx tsx scripts/ts/localnet_aggregator_feed_btc.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

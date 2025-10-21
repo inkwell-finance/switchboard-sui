@@ -118,3 +118,4 @@ const res = await client.signAndExecuteTransaction({
 });
 
 console.log("On Demand Set Package ID Response: ", res);
+process.exit(0);

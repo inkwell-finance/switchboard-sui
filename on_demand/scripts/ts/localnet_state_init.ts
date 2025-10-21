@@ -224,3 +224,4 @@ const res = await client.signAndExecuteTransaction({
 
 console.log(res);
 console.log("Successfully initialized state object");
+process.exit(0);

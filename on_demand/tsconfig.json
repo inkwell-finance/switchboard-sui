@@ -18,7 +18,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
-    "outDir": "out"
+    "outDir": "out",
+    "ignoreDeprecations": "6.0"
   },
   "ts-node": {
     // these options are overrides used only by ts-node

@@ -66,6 +66,8 @@ if (!keypair) {
 // Initialization and Logging
 //================================================================================================
 
+// create new user
+const userAddress = keypair.getPublicKey().toSuiAddress();
 
 // console.log(`User account ${userAddress} loaded.`);
 
@@ -79,14 +81,70 @@ const stateData = await state.loadData();
 
 console.log("State Data: ", stateData);
 
-const aggregatorId = process.env.BTC_USDT_AGGREGATOR_ID;
-// console.log("Aggregator init response:", res);
+// const queue = new Queue(sb, stateData.guardianQueue);
+// console.log("Queue Data: ", await queue.loadData());
+
+// const switchboardObjectAddress = ON_DEMAND_TESTNET_OBJECT_PACKAGE_ID;
+// const gql = new SuiGraphQLClient({
+//   url: "https://sui-testnet.mystenlabs.com/graphql",
+// });
+
+// const allOracles = await queue.loadOracleData();
+// console.log("All Oracles: ", allOracles);
+
+// //================================================================================================
+// // Initialize Feed Flow
+// //================================================================================================
+
+// // try creating a feed
+const feedName = "BTC/USDT";
+
+// // BTC USDT
+const feedHash = process.env.BTC_USDT_FEED_HASH!;
+const minSampleSize = 1;
+const maxStalenessSeconds = 60;
+const maxVariance = 1e9;
+const minResponses = 1;
+let transaction = new Transaction();
+await Aggregator.initTx(sb, transaction, {
+  stateObjectId: ON_DEMAND_LOCALNET_STATE_OBJECT_ID,
+  feedHash,
+  name: feedName,
+  authority: userAddress,
+  minSampleSize,
+  maxStalenessSeconds,
+  maxVariance,
+  minResponses,
+  oracleQueueId: stateData.oracleQueue,
+});
+const res = await client.signAndExecuteTransaction({
+  signer: keypair,
+  transaction,
+  options: {
+    showEffects: true,
+  },
+});
+let aggregatorId;
+res.effects?.created?.forEach((c) => {
+  if (c.reference.objectId) {
+    aggregatorId = c.reference.objectId;
+  }
+});
+
+console.log("Aggregator init response:", res);
 
 if (!aggregatorId) {
   throw new Error("Failed to create aggregator");
 }
 
+console.log(`Aggregator ID: ${aggregatorId}`);
+
 const aggregator = new Aggregator(sb, aggregatorId);
+
+// wait for the transaction to be confirmed
+await client.waitForTransaction({
+  digest: res.digest,
+});
 
 console.log("Aggregator Data: ", await aggregator.loadData());
 
@@ -117,3 +175,4 @@ const feedResponse = await client.signAndExecuteTransaction({
 });
 
 console.log("Feed response:", feedResponse);
+process.exit(0);

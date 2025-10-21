@@ -1,0 +1,210 @@
+
+> sui-on-demand@ localnet:usdc_aggregator_flow /home/lars/sui/inkwell/packages/switchboard/on_demand
+> pnpm dlx tsx scripts/ts/localnet_aggregator_flow_usdc.ts
+
+[dotenv@17.2.2] injecting env (15) from .env -- tip: 📡 auto-backup env with Radar: https://dotenvx.com/radar
+State Data:  {
+  guardianQueue: '0xc4aa00f8759197bb7efdf0da38d34f96af43923d6fa8b6427a2834a02d646861',
+  id: '0x5077c77771a08f5371afd34baf36d71861e4c1cfac457d72ee1f2f0db595f188',
+  onDemandPackageId: '0xf634125d018ebe6f831b9e486510d0063710d8e08658bbb16ed62adc3a7743da',
+  oracleQueue: '0x090e725c47eba4e18d375082180884b97a799afa2e45575ea097df01f47643d3'
+}
+Aggregator init response: {
+  digest: '8owb86DPfnz77qrARgFRmzz7cgQoS5V6kdSvFzvxm15T',
+  effects: {
+    messageVersion: 'v1',
+    status: { status: 'success' },
+    executedEpoch: '0',
+    gasUsed: {
+      computationCost: '1000000',
+      storageCost: '4446000',
+      storageRebate: '1956240',
+      nonRefundableStorageFee: '19760'
+    },
+    modifiedAtVersions: [ [Object], [Object] ],
+    sharedObjects: [ [Object], [Object] ],
+    transactionDigest: '8owb86DPfnz77qrARgFRmzz7cgQoS5V6kdSvFzvxm15T',
+    created: [ [Object] ],
+    mutated: [ [Object] ],
+    deleted: [ [Object] ],
+    gasObject: { owner: [Object], reference: [Object] },
+    eventsDigest: 'HabV6m2uSBU9p8TCWPhFZn6Eae1V3uWaachz1wDSAHpC',
+    dependencies: [
+      '2z99s89YGwWTLPcU7NA8ZwHwU55STwAH1kqfE9w31gFe',
+      'B8bkckVdENQ1uGqvTT6XTcc7bf5BWHK8D5aMQPSH7Qyq',
+      'CaJCDWs6X1DSGHYMWoDWwsZiBedGVyuLBj6NbZXUH8ni',
+      'HTQ1Maup32m2cQtwR3UQ7yLXmJ9RzKLXJM1pHnjkKwpf'
+    ]
+  },
+  confirmedLocalExecution: false
+}
+Aggregator ID: 0xfddb943cf27dd7bd5783fb81a1b34bf13b12278d15e3e8f288eabdbf1839e0d1
+Aggregator Data:  {
+  id: '0xfddb943cf27dd7bd5783fb81a1b34bf13b12278d15e3e8f288eabdbf1839e0d1',
+  authority: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+  createdAtMs: 1761061782143,
+  currentResult: {
+    maxResult: <BN: 0>,
+    maxTimestamp: 0,
+    mean: <BN: 0>,
+    minResult: <BN: 0>,
+    minTimestamp: 0,
+    range: <BN: 0>,
+    result: <BN: 0>,
+    stdev: <BN: 0>
+  },
+  feedHash: '609c77212a5df8ab1896ff9e61d962ac164afefad908e8750e8beb6fda7c01d5',
+  maxStalenessSeconds: 60,
+  maxVariance: 1000000000,
+  minResponses: 1,
+  minSampleSize: 1,
+  name: 'USDC/USD',
+  queue: '0x090e725c47eba4e18d375082180884b97a799afa2e45575ea097df01f47643d3',
+  updateState: { currIdx: 0, results: [] }
+}
+Sui Queue Data:  {
+  authority: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+  existingOracles: [
+    {
+      oracleId: '0xa23cca66e2eb4a287e4a24bec686047c603acdcad54af2da225cf698ca095b9b',
+      oracleKey: 'J2N4wtDwW8ax8tYmHJUv9ZrdRXza5RVmDaRUKycvvgAn'
+    },
+    {
+      oracleId: '0xff66175624eed4e1acff807f21456868eaf5cd34a98bcb0ef66312ba74c2f964',
+      oracleKey: '5t1fPUNy6M87gX2oee23yVv1d7QTnwfcWAgBZFwKvREm'
+    },
+    {
+      oracleId: '0xfcb18bb764e50594ea555dbfa121c248c9e4855e32f176b6c0c29080ec5af6e3',
+      oracleKey: '44EKehPyzcJfj5oDQrWqAmBxbUVmXAcY3vihUJEPjoMw'
+    },
+    {
+      oracleId: '0x06b2f5c7999e80ef6c4ea1d1ce73d42138cabb5b5192f03c1898050f2b1c5ae9',
+      oracleKey: 'Ga2zywGD4QMUvXb1jbSBZYwEVJFeJBcMVVF63daGPx8E'
+    },
+    {
+      oracleId: '0x84fad30a10954e4a3b5e16c41eaea59e73054b662ce0339167378aa168edee9f',
+      oracleKey: '78RQueztz58VXJ2DAabtdkMd5JqAT68stEtMUPJWBYnu'
+    },
+    {
+      oracleId: '0x84e452afad4ce30301397c0916aedcf5404d86e92b7fbd20f7d779fad0f0994d',
+      oracleKey: '5np1eGFPc9GsXc7r6m5qfcnAKoyb4EjR8TMT1XrzpZEa'
+    },
+    {
+      oracleId: '0x976af7efd60f7b62efeafb48dc5259f963c77baf7a3a0dfcdce196d14dc3a800',
+      oracleKey: '6zNYHErDrEwFJnVESwwMBvJE8tp2AUNypnNWviVHLefz'
+    },
+    {
+      oracleId: '0x9688909fded777bc3f9e7cef6bd405d17330c7d272059d1f1789be5e2c791c05',
+      oracleKey: '2NpN5fXFxFNqbPi3a4diu86gZGW4nsZcVftFt3pW9ELZ'
+    },
+    {
+      oracleId: '0x073477ec1c77efc999dea1900c5abfbc612cca6e69fb9118f99750f6f4832930',
+      oracleKey: 'EqT5yWVWxuMdyqTToAobhAhBt7oWq2Wam9c4gTvYdjmq'
+    },
+    {
+      oracleId: '0x7c65dda09ecaebb5a1e837181cec6ae24b193dedaf3cf4dc04ae57ab06741572',
+      oracleKey: '6qfw2YKuE7WKaQTQMf8KWrQS2VA5KMZhorUQPrTghxp1'
+    },
+    {
+      oracleId: '0x0cadc262295912ea3a1749ba4ee316e614b8c5828c6bf54672e22b25421cc3da',
+      oracleKey: 'Hdu1niJgqVGhesoxgy37p6WBunVDoBacZJZVK7VRRevg'
+    },
+    {
+      oracleId: '0xdd2a1f7fd76413969be631e56a28b652183e9b083ce772e73d0c7763a8c0bd01',
+      oracleKey: 'DLgQHWNZYcP1Tkvidr4gnC5cjCc9i74q5uJ2jL6jvh78'
+    },
+    {
+      oracleId: '0x9abb31afb35ea9f9ba8e4fe8e908eb7efbe483108403f416e1c8da73165e4eab',
+      oracleKey: '5H8eirMgqYoZsPpo3WzkAuZRJyAqwauYXCgXvswZMWUR'
+    },
+    {
+      oracleId: '0x1efa3d580ad1b07c65d74d772c5eecb09faed5a7dfc47c773aa1389ebccf9fbc',
+      oracleKey: 'Dr9Fhfai6gjfyJkN6sjsPuQAPdh4XpzvSiGhYQrqx8TR'
+    },
+    {
+      oracleId: '0x17230497a0a841376cbd2ce22640feec50458e39719cf31614bfced80cbbd3a7',
+      oracleKey: 'CYkBEhDgvVHutGKXafAg1gki92SGWDT4MnCxX8KLed6i'
+    },
+    {
+      oracleId: '0x18e8444f79451fb6a74065b289fd01b2731dc1cc4a4097090546c3bd41a836e7',
+      oracleKey: '3qAUs6ZTFJY1Bh8vwYqDWUyjcrTGxfYfq56pELWYKvBr'
+    },
+    {
+      oracleId: '0x4f8475777100d8c81de7fb793dbaab59c19e9fbc2578e2557649efa0f1b0a79d',
+      oracleKey: 'GX88Nr5WVn8r4JsUTPeVJP1hX6F1tnz7ssx25zCsKTHE'
+    },
+    {
+      oracleId: '0x731f8fd41fe59e399867a592ede68552be64ee12d20b5f3f0e3168209406a68f',
+      oracleKey: '3EyghdfasAbMx5cfvRgMRZ7JvBhEspYitpESjQsAgvYk'
+    }
+  ],
+  fee: 0,
+  feeRecipient: '0xf7ae71f84fabc58662bd4209a8893f462c60f247095bb35b19ff659ad0081462',
+  feeTypes: [
+    '0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>'
+  ],
+  guardianQueueId: '0xc4aa00f8759197bb7efdf0da38d34f96af43923d6fa8b6427a2834a02d646861',
+  id: '0x090e725c47eba4e18d375082180884b97a799afa2e45575ea097df01f47643d3',
+  lastQueueOverrideMs: 0,
+  minAttestations: 3,
+  name: 'Localnet Oracle Queue',
+  oracleValidityLengthMs: 604800000,
+  queueKey: 'EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7'
+}
+Timeout TimeoutError: TimeoutError: timed out after 2.000 seconds
+    at Timeout._onTimeout (/home/lars/sui/inkwell/node_modules/.pnpm/@switchboard-xyz+common@3.5.0_bufferutil@4.0.9_typescript@5.9.3_utf-8-validate@5.0.10/node_modules/@switchboard-xyz/common/lib/utils/async.cjs:117:51)
+    at listOnTimeout (node:internal/timers:608:17)
+    at process.processTimers (node:internal/timers:543:7) {
+  ms: 2000
+}
+{
+  responses: [
+    {
+      oracle_pubkey: 'fcf0148c3a1d93e28328cf1ef2c51ca5784ff8ab9cb36bfc1c4bdce8b9c4002b',
+      queue_pubkey: 'c9477bfb5ff1012859f336cf98725680e7705ba2abece17188cfb28ca66ca5b0',
+      oracle_signing_pubkey: 'ecebf350c74692e0ddcb53fe543cd1f542244e8373142b9ac140d84d60914e6111ab4560de0702fa301156312104918a31e75c533eeedc1bd49df81543802f0b',
+      feed_hash: '609c77212a5df8ab1896ff9e61d962ac164afefad908e8750e8beb6fda7c01d5',
+      recent_hash: '11111111111111111111111111111111',
+      failure_error: '',
+      success_value: '999854930000000000',
+      msg: 'N7EQjDfmHq0n/CzUPd2KK7q7/ObOSl+kRU2x9krwR5M=',
+      msg_prehash: '',
+      signature: 'tTS8hOMAocDqBWm6/T6HFMGawFT0KdqM/jKTjcbIQj5k/zHvXGYamJOJuph83YBrIxC//xtHpcOnO758+uKeTA==',
+      recovery_id: 0,
+      recent_successes_if_failed: [],
+      timestamp: 1761061777,
+      min_oracle_samples: 1,
+      receipts: []
+    }
+  ],
+  failures: []
+}
+Feed response: {
+  digest: '71BNSegp4w7sYorjaN4Ky4cSMa5dpaCQhGCp9uJeRFfP',
+  effects: {
+    messageVersion: 'v1',
+    status: { status: 'success' },
+    executedEpoch: '0',
+    gasUsed: {
+      computationCost: '1000000',
+      storageCost: '5867200',
+      storageRebate: '4401540',
+      nonRefundableStorageFee: '44460'
+    },
+    modifiedAtVersions: [ [Object], [Object] ],
+    sharedObjects: [ [Object], [Object], [Object], [Object] ],
+    transactionDigest: '71BNSegp4w7sYorjaN4Ky4cSMa5dpaCQhGCp9uJeRFfP',
+    created: [ [Object] ],
+    mutated: [ [Object], [Object] ],
+    gasObject: { owner: [Object], reference: [Object] },
+    eventsDigest: 'Civ2PLiUukjiDHSxzcFYuTTazHHJVDrN4HWbxJ8Lx6i3',
+    dependencies: [
+      '2z99s89YGwWTLPcU7NA8ZwHwU55STwAH1kqfE9w31gFe',
+      '48GLgULrh7JMoWfzhKCyo2WvSV8R4XN57snEGtYUrb8x',
+      '7AHHaM84NXYbcJBvjbV2y3sPAJHrF54R1TpbDRJv6mbL',
+      '8owb86DPfnz77qrARgFRmzz7cgQoS5V6kdSvFzvxm15T',
+      'HTQ1Maup32m2cQtwR3UQ7yLXmJ9RzKLXJM1pHnjkKwpf'
+    ]
+  },
+  confirmedLocalExecution: false
+}

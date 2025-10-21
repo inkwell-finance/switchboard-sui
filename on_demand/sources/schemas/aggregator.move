@@ -597,6 +597,26 @@ fun valid_update_indices(update_state: &UpdateState, max_staleness_ms: u64, now_
     valid_updates
 }
 
+
+    // Admin-only setter to force the current_result without recomputing from updates
+    public(package) fun set_current_value_admin(
+        aggregator: &mut Aggregator,
+        result: Decimal,
+        timestamp_ms: u64,
+    ) {
+        aggregator.current_result = CurrentResult {
+            result,
+            timestamp_ms,
+            min_timestamp_ms: timestamp_ms,
+            max_timestamp_ms: timestamp_ms,
+            min_result: result,
+            max_result: result,
+            stdev: decimal::zero(),
+            range: decimal::zero(),
+            mean: result,
+        }
+    }
+
 #[test_only]
 public fun set_current_value(
     aggregator: &mut Aggregator,

@@ -1,8 +1,8 @@
 [package]
+published-at = "0xf634125d018ebe6f831b9e486510d0063710d8e08658bbb16ed62adc3a7743da"
 name = "Switchboard"
 edition = "2024.beta"
 version = "0.0.2"
-# published-at = "0x83dae3efad1a45b2673a933b193c95cea08f1d789eea1f966083/342a4be6aef2"
 
 # # mainnet
 # [dependencies]

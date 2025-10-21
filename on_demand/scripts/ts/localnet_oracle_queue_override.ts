@@ -196,3 +196,4 @@ const allOraclesAfter = await Oracle.loadAllOracles(
   switchboardObjectAddress
 );
 console.log("All Oracles After: ", allOraclesAfter);
+process.exit(0);
